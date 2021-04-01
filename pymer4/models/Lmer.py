@@ -441,11 +441,11 @@ class Lmer(object):
 
         # Store design matrix and get number of IVs for inference
         design_matrix = stats.model_matrix(self.model_obj)
-        if design_matrix is not None:
+        if design_matrix is None:
+            num_IV = 0
+        else:            
             self.design_matrix = pd.DataFrame(base.data_frame(design_matrix))
             num_IV = self.design_matrix.shape[1]
-        else:
-            num_IV = 0
 
         if permute and verbose:
             print("Using {} permutations to determine significance...".format(permute))
