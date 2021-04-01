@@ -441,7 +441,7 @@ class Lmer(object):
 
         # Store design matrix and get number of IVs for inference
         design_matrix = stats.model_matrix(self.model_obj)
-        if design_matrix:
+        if design_matrix is not None:
             self.design_matrix = pd.DataFrame(base.data_frame(design_matrix))
             num_IV = self.design_matrix.shape[1]
         else:
